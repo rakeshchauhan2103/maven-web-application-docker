@@ -12,7 +12,7 @@ environment {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "44.201.102.243:8081"
         NEXUS_REPOSITORY = "maven-demo-repo"
-        NEXUS_CREDENTIAL_ID = "nexus"
+        NEXUS_CREDENTIAL_ID = "Nexus"
     }
 
 stages{
