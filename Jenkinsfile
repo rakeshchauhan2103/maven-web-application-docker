@@ -7,6 +7,14 @@ maven 'MAVEN'
 
 }
 
+environment {
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "44.201.102.243:8081"
+        NEXUS_REPOSITORY = "maven-demo-repo"
+        NEXUS_CREDENTIAL_ID = "nexus"
+    }
+
 stages{
 
   stage('Build'){
@@ -26,7 +34,7 @@ stages{
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
-                            nexusVersion: "nexus3",
+                            nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
