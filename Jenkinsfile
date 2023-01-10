@@ -104,7 +104,7 @@ stages{
 
 }
 
-/*post{
+post{
 
  success{
  	mail body: "<b>Build Result</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of build: ${env.BUILD_URL} ", 
@@ -113,19 +113,22 @@ stages{
         from: 'pritiranga9@gmail.com', 
         mimeType: 'text/html', 
         replyTo: 'sureshranga1777@gmail.com', 
-        subject: "Waiting for your Approval! Job: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", 
+        subject: "Job: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", 
         to: "sureshranga1777@gmail.com"; 
  }
  
  failure{
- emailext to: 'devopstrainingblr@gmail.com,mithuntechnologies@yahoo.com',
-          subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-          body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-          replyTo: 'devopstrainingblr@gmail.com'
+ 	mail body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
+        cc: '', 
+        charset: 'UTF-8', 
+        from: 'pritiranga9@gmail.com', 
+        mimeType: 'text/html', 
+        replyTo: 'sureshranga1777@gmail.com', 
+        subject: "Job: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", 
+        to: "sureshranga1777@gmail.com"; 
  }
  
 }
 
 
-}//Pipeline closing
-*/
+}
