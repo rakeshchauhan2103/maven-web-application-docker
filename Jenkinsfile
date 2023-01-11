@@ -26,6 +26,7 @@ stages{
     		steps {
     			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
          			sh "mvn sonar:sonar\
+				-Dsonar.host.url= http://100.25.102.147:9000/\
 				-Dsonar.projectKey= testing"
        			}
      		}
