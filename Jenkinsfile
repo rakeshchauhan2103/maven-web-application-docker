@@ -15,6 +15,19 @@ environment {
 }
 
 stages{
+	
+// Fetch Source code
+
+	stage ('code'){
+		steps{
+			script{
+				checkout scmGit(
+    					branches: [[name: 'me']],
+    					userRemoteConfigs: [[url: 'https://github.com/pritiranga/maven-web-application-docker.git']]
+				)
+		  	}
+	  	} 
+	}
 
 	stage('SonarQube analysis') {
     		environment {
