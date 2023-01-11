@@ -60,16 +60,23 @@ stages{
             }
         }*/
 	
-	stage('SonarQube Analysis') {
-		steps{
-			script {
-				def mvn = tool 'MAVEN';
-    				withSonarQubeEnv() {
-      				sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=testing-demo"
-    				}
-			}
-		}
-  	}
+  stage('SonarQube analysis') {
+    environment {
+      SCANNER_HOME = tool 'Sonar-scanner'
+    }
+    steps {
+    withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
+         sh '''$SCANNER_HOME/bin/sonar-scanner \
+         -Dsonar.projectKey=testing-demo \
+         -Dsonar.projectName=testing-demo \
+         -Dsonar.sources=src/ \
+         -Dsonar.java.binaries=target/classes/ \
+         -Dsonar.exclusions=src/test/java/****/*.java \
+         -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
+         -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+       }
+     }
+}
     
 	
 }//stages closing
