@@ -28,11 +28,6 @@ stages{
          			sh '''$SCANNER_HOME/bin/sonar-scanner \
          			-Dsonar.projectKey=maven-demo-webapp \
          			-Dsonar.projectName=maven-demo-webapp \
-         			-Dsonar.sources=src/ \
-         			-Dsonar.java.binaries=target/classes/ \
-         			-Dsonar.exclusions=src/test/java/****/*.java \
-         			
-         			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
        			}
      		}
   	}
