@@ -16,6 +16,24 @@ environment {
 
 stages{
 
+  stage('SonarQube analysis') {
+    environment {
+      SCANNER_HOME = tool 'SONAR'
+    }
+    steps {
+    withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
+         sh '''$SCANNER_HOME/bin/sonar-scanner \
+         -Dsonar.projectKey=maven-demo-webapp-analysis \
+         -Dsonar.projectName=maven-demo-webapp-analysis \
+         -Dsonar.sources=src/ \
+         -Dsonar.java.binaries=target/classes/ \
+         -Dsonar.exclusions=src/test/java/****/*.java \
+         -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
+         -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+       }
+     }
+  }
+	
   stage('Build'){
   steps{
   sh  "mvn clean install package"
