@@ -24,7 +24,7 @@ stages{
       		SCANNER_HOME = tool 'SONAR'
     		}
     		steps {
-    			withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
+    			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
          			sh '''$SCANNER_HOME/bin/sonar-scanner \
          			-Dsonar.projectKey=testing \
          			-Dsonar.projectName=testing \
