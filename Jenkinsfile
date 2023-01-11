@@ -4,7 +4,7 @@ agent any
 
 stages{
 
-	stage ('code'){
+	stage ('Source code checkout'){
 		steps{
 			script{
 				checkout scmGit(
