@@ -17,7 +17,7 @@ environment {
 
 stages{
 
-  stage('Build'){
+  stage('Build and Test'){
   steps{
   sh  "mvn clean install package"
   }
