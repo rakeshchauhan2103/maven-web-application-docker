@@ -59,8 +59,15 @@ stages{
                 }
             }
         }*/
+	
+	stage('SonarQube Analysis') {
+    		def mvn = tool 'Default Maven';
+    		withSonarQubeEnv() {
+      		sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=testing-demo"
+    		}
+  	}
     
-	stage('SonarQube analysis') {
+/*	stage('SonarQube analysis') {
     		environment {
       			SCANNER_HOME = tool 'SONAR'
     		}
@@ -68,7 +75,7 @@ stages{
     			withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
          			sh '''$SCANNER_HOME/bin/sonar-scanner \
          			-Dsonar.projectKey=projectKey \
-         			-Dsonar.projectName=projectName \
+         			-Dsonar.projectName=  \
          			-Dsonar.sources=src/ \
          			-Dsonar.java.binaries=target/classes/ \
          			-Dsonar.exclusions=src/test/java/****/*.java \
@@ -76,7 +83,7 @@ stages{
          			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
        			}
      		}
-	}
+	}*/
    /*	stage('SQuality Gate') {
      		steps {
        			timeout(time: 1, unit: 'MINUTES') {
