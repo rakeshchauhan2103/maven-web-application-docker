@@ -25,9 +25,9 @@ stages{
     		}
     		steps {
     			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
-         			sh '''$SCANNER_HOME/bin/sonar-scanner \
+         			sh '$SCANNER_HOME/bin/sonar-scanner \
          			-Dsonar.projectKey=maven-demo-webapp \
-         			-Dsonar.projectName=maven-demo-webapp \ '''
+         			-Dsonar.projectName=maven-demo-webapp \ '
        			}
      		}
   	}
