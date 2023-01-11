@@ -62,7 +62,7 @@ stages{
 	
   stage('SonarQube analysis') {
     environment {
-      SCANNER_HOME = tool 'Sonar-scanner'
+      SCANNER_HOME = tool 'SONAR'
     }
     steps {
     withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
