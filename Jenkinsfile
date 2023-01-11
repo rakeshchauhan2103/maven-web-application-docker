@@ -24,10 +24,11 @@ stages{
       		SCANNER_HOME = tool 'SONAR'
     		}
     		steps {
-    			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
-         			sh "mvn sonar:sonar\
-				-Dsonar.host.url= http://100.25.102.147:9000/\
-				-Dsonar.projectKey= testing"
+    			withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'SONAR') {
+         			sh '''$SCANNER_HOME/bin/sonar-scanner \
+         			-Dsonar.projectKey=testing \
+         			-Dsonar.projectName=testing \
+         			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
        			}
      		}
   	}
