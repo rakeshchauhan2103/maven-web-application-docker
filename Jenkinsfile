@@ -25,7 +25,7 @@ stages{
     		}
     		steps {
     			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
-         			sh "mvn sonar:sonar \ 
+         			sh "mvn sonar:sonar 
 				-Dsonar.projectKey= testing"
        			}
      		}
