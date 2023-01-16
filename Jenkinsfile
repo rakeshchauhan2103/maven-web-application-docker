@@ -99,9 +99,8 @@ stages{
 	stage('Pre-Prod Approval'){
   		steps{              
         		script {
-                    		timeout(time: 1, unit: 'MINUTES'){
-                        		def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', parameters: [choice(choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'], description: 'Hours to delay deployment?', name: 'DeploymentDelay')]
-                    			sleep time: deploymentDelay.toInteger(), unit: 'HOURS'
+                    		timeout(time: 10, unit: 'MINUTES'){
+                        		input ('Deploy to Production?')
                     			mail body: "'<a href='${BUILD_URL}input'>click to approve</a>'",
                    			cc: '', 
                     			charset: 'UTF-8', 
