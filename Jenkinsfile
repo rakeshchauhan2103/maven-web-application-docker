@@ -27,19 +27,19 @@ stages{
 	  	}
    	}
 	
-	stage('SonarQube analysis') {
-    		environment {
-      		SCANNER_HOME = tool 'SONAR'
-    		}
-    		steps {
-    			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
-         			sh '''$SCANNER_HOME/bin/sonar-scanner \
-         			-Dsonar.projectKey=testing \
-         			-Dsonar.projectName=testing \
-         			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
-       			}
-     		}
-  	}
+// 	stage('SonarQube analysis') {
+//     		environment {
+//       		SCANNER_HOME = tool 'SONAR'
+//     		}
+//     		steps {
+//     			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
+//          			sh '''$SCANNER_HOME/bin/sonar-scanner \
+//          			-Dsonar.projectKey=testing \
+//          			-Dsonar.projectName=testing \
+//          			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+//        			}
+//      		}
+//   	}
 	
 	stage('Build'){
   		steps{
@@ -84,17 +84,17 @@ stages{
             	}
         }
   
-// 	stage('Deploy'){
-//   		steps{
-// 			sshPublisher(publishers: [sshPublisherDesc(configName: 'dev', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
-//   		}
-//   	}
+ 	stage('Deploy'){
+  		steps{
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'dev', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
+  		}
+  	}
   
-// 	stage('Staging'){
-//   		steps{
-// 			sshPublisher(publishers: [sshPublisherDesc(configName: 'staging', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
-//   		}
-//   	}
+	stage('Staging'){
+  		steps{
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'staging', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
+  		}
+  	}
 	
 	stage('Pre-Prod Approval'){
   		steps{              
@@ -113,6 +113,12 @@ stages{
                     		}
                 	}        
   		} 
+  	}
+	
+	stage('Production'){
+  		steps{
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'prod', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
+  		}
   	}
 	
 	}//stages close	
