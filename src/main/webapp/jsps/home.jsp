@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MithunTechnologies- Home Page</title>
-<link href="images/mithunlogo.jpg" rel="icon">
+<title>TestingXperts</title>
+<link href="images/txlogo.webp" rel="icon">
 </head>
 </head>
 <body>
