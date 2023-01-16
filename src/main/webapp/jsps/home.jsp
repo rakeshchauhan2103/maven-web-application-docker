@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TestingXperts</title>
-<link href="images/txlogo.webp" rel="icon">
+<link href="images/txlogo.jpg" rel="icon">
 </head>
 </head>
 <body>
