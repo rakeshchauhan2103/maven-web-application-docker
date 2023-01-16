@@ -120,6 +120,31 @@ stages{
 			sshPublisher(publishers: [sshPublisherDesc(configName: 'prod', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
   		}
   	}
+}//stages close	
+
+post{
+
+	success{
+ 		mail body: "<b>Build Result</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of build: ${env.BUILD_URL} ", 
+        	cc: '', 
+        	charset: 'UTF-8', 
+        	from: 'pritiranga9@gmail.com', 
+        	mimeType: 'text/html', 
+        	replyTo: 'sureshranga1777@gmail.com', 
+        	subject: "Job: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", 
+        	to: "sureshranga1777@gmail.com"; 
+ 	}
+ 
+	failure{
+ 		mail body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
+        	cc: '', 
+        	charset: 'UTF-8', 
+        	from: 'pritiranga9@gmail.com', 
+        	mimeType: 'text/html', 
+        	replyTo: 'sureshranga1777@gmail.com', 
+        	subject: "Job: '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", 
+        	to: "sureshranga1777@gmail.com"; 
+ 	}
+ }	 
 	
-	}//stages close	
 } //pipeline close
