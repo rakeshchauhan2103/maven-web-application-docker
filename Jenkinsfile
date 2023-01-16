@@ -27,19 +27,19 @@ stages{
 	  	}
    	}
 	
-// 	stage('SonarQube analysis') {
-//     		environment {
-//       		SCANNER_HOME = tool 'SONAR'
-//     		}
-//     		steps {
-//     			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
-//          			sh '''$SCANNER_HOME/bin/sonar-scanner \
-//          			-Dsonar.projectKey=testing \
-//          			-Dsonar.projectName=testing \
-//          			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
-//        			}
-//      		}
-//   	}
+	stage('SonarQube analysis') {
+    		environment {
+      		SCANNER_HOME = tool 'SONAR'
+    		}
+    		steps {
+    			withSonarQubeEnv(credentialsId: 'Sonar-token', installationName: 'SONAR') {
+         			sh '''$SCANNER_HOME/bin/sonar-scanner \
+         			-Dsonar.projectKey=testing \
+         			-Dsonar.projectName=testing \
+         			-Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+       			}
+     		}
+  	}
 	
 	stage('Build'){
   		steps{
