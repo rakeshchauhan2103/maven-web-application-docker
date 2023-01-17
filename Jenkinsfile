@@ -12,7 +12,7 @@ environment {
         NEXUS_URL = "3.83.64.77:8081"
         NEXUS_REPOSITORY = "maven-demo-testing"
         NEXUS_CREDENTIAL_ID = "Nexus"
-	DOCKERHUB = "Dockerhub"
+	DOCKERHUB = credentials("Dockerhub")
 }
 
 stages{
