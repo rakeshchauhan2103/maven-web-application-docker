@@ -92,9 +92,9 @@ stages{
 		}
   	}
 	
-	stage('Pushing Image to DockerHub'){
+	stage('Publish Image to DockerHub'){
 		steps{
-			sshPublisher(publishers: [sshPublisherDesc(configName: 'dev', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker login -u $DOCKERHUB_PSW -p $DOCKERHUB_USR && docker tag webapp:latest pritidevops/webapp:latest && docker push pritidevops/webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'dev', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker login -u pritidevops -p Xperts@3619 && docker tag webapp:latest pritidevops/webapp:latest && docker push pritidevops/webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
 		}
 	}
   
