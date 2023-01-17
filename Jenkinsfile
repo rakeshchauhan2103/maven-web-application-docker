@@ -12,6 +12,7 @@ environment {
         NEXUS_URL = "3.83.64.77:8081"
         NEXUS_REPOSITORY = "maven-demo-testing"
         NEXUS_CREDENTIAL_ID = "Nexus"
+	DOCKERHUB = "Dockerhub"
 }
 
 stages{
@@ -84,15 +85,22 @@ stages{
             	}
         }
   
- 	stage('Deploy'){
-  		steps{
-			sshPublisher(publishers: [sshPublisherDesc(configName: 'dev', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
-  		}
+ 	stage('Build Docker Image'){
+		steps{
+			sh'docker build -t webapp .'
+		}
   	}
+	
+	stage('Pushing Image to DockerHub'){
+		steps{
+			sh'echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin'
+			sh'docker push pritidevops/webapp:latest'
+		}
+	}
   
 	stage('Staging'){
   		steps{
-			sshPublisher(publishers: [sshPublisherDesc(configName: 'staging', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker build -t webapp . && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'staging', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker stop web-app && docker rm web-app && cd maven-project-demo && docker pull pritidevops/webapp:latest && docker run -itd -p 8080:8080 --name web-app webapp:latest', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'maven-project-demo', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])  
   		}
   	}
 	
