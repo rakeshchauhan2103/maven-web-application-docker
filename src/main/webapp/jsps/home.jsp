@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1 align="center"><b>TestingXperts, Chandigarh, India </b></h1>
-	<div id= "right">
+	<div id="right">
         	<img src="https://lh3.googleusercontent.com/p/AF1QipMtsZR5XOBrxjpA5vJJOFKcGRJ925DdB8Dj2cey=s1360-w1360-h1020" alt="" width="600" height="500">
         </div>
 	<h2 align="center">TestingXperts is a Specialist QA & Software Testing Company assisting organisations globally to deliver high quality Software Applications.</h2>
