@@ -15,7 +15,8 @@
         </div>
 	<h2 align="left">TestingXperts is a Specialist QA & Software Testing Company assisting organisations globally to deliver high quality Software Applications.</h2>
 	<p> <I> NelsonHall ranked TestingXperts as the 5th Largest Pure-play QA and Testing company globally in 2020. TestingXperts is also mentioned in Everest Group Next-generation Quality Assurance (QA) Services PEAK Matrix™ Assessment 2020 and ISG Provider Lens study “Next-Gen ADM – Service Partners 2020” </I> </p>
-
-
+	<br>
+	<h4 align="left">Address:</h4>
+	<h6 align="left"> Site 13-A, Rajiv Gandhi, IT Park Rd, Chandigarh, 160101 </h6>
 </body>
 </html>
