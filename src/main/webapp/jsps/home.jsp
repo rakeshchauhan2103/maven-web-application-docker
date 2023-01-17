@@ -14,7 +14,7 @@
         	<img align="right" src="https://lh3.googleusercontent.com/p/AF1QipMtsZR5XOBrxjpA5vJJOFKcGRJ925DdB8Dj2cey=s1360-w1360-h1020" alt="" width="600" height="500">
         </div>
 	<h2 align="left">TestingXperts is a Specialist QA & Software Testing Company assisting organisations globally to deliver high quality Software Applications.</h2>
-	<p align="left> <I> NelsonHall ranked TestingXperts as the 5th Largest Pure-play QA and Testing company globally in 2020. TestingXperts is also mentioned in Everest Group Next-generation Quality Assurance (QA) Services PEAK Matrix™ Assessment 2020 and ISG Provider Lens study “Next-Gen ADM – Service Partners 2020” </I> </p>
+	<p> <I> NelsonHall ranked TestingXperts as the 5th Largest Pure-play QA and Testing company globally in 2020. TestingXperts is also mentioned in Everest Group Next-generation Quality Assurance (QA) Services PEAK Matrix™ Assessment 2020 and ISG Provider Lens study “Next-Gen ADM – Service Partners 2020” </I> </p>
 
 
 </body>
