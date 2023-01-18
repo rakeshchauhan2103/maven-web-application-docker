@@ -8,7 +8,7 @@
 <link href="images/txlogo.jpg" rel="icon">
 </head>
 </head>
-<body>
+<body bgcolor= "orange">
 	<h1 align="center"><b>TestingXperts, Chandigarh, India </b></h1>
 	<div>
         	<img align="right" src="https://lh3.googleusercontent.com/p/AF1QipMtsZR5XOBrxjpA5vJJOFKcGRJ925DdB8Dj2cey=s1360-w1360-h1020" alt="" width="600" height="500">
