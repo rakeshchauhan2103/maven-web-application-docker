@@ -3,7 +3,7 @@ pipeline{
 	stages{
 		stage('Hello'){
 			steps{
-				echo "hello rakesh to jenkins world."
+				echo "helloooooooo rakesh to jenkins world."
 			}
 		}
 	} //stages close
