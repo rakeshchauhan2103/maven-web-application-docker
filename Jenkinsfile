@@ -1,9 +1,12 @@
 pipeline{
-	agent any 
+	agent any
+	tools{
+		maven "Maven"
+	} 
 	stages{
-		stage('Hello'){
+		stage('build'){
 			steps{
-				echo "Helloooooooo rakeshhhhhhhhhh to jenkins world hurrrrrrrrrrr."
+				sh"mvn clean install package"
 			}
 		}
 	} //stages close
